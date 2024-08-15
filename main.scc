@@ -1,0 +1,23 @@
+PROG_MEMORY_START 0
+PROG_MEMORY_END 512
+
+DATA_MEMORY_START 513
+DATA_MEMORY_END 3840
+
+CODE_BEGIN
+
+var john = 150
+var sam = 12
+var both = 0
+
+if sam == 24
+<
+john = 0
+sam = 0
+both = 0
+>
+
+both = 1
+
+
+CODE_END
