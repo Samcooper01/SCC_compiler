@@ -108,3 +108,97 @@ Example:
 // This is a comment
 var temp = 5 
 ```
+
+# Example
+- This example is in this repo as well (main.scc and main.samco)
+
+### main.scc
+```
+PROG_MEMORY_START 0
+PROG_MEMORY_END 512
+
+DATA_MEMORY_START 513
+DATA_MEMORY_END 3840
+
+CODE_BEGIN
+
+var john = 150
+var sam = 12
+var both = 0
+
+if sam == 24
+<
+john = 0
+sam = 0
+both = 0
+>
+
+both = 1
+
+
+CODE_END
+```
+### main.samco
+- This is the asm produced
+```
+//var var = 150
+lshf DR 0x00
+lshf DR 0x96
+lshf r7 0x08
+lshf r7 0x81
+PUT DR r7
+
+//var var = 12
+lshf DR 0x00
+lshf DR 0x0c
+lshf r7 0x08
+lshf r7 0x82
+PUT DR r7
+
+//var var = 0
+lshf DR 0x00
+lshf DR 0x00
+lshf r7 0x08
+lshf r7 0x83
+PUT DR r7
+
+
+//If statement begins
+lshf r1 0x21
+lshf r1 0x77
+get r2 r1
+lshf r1 0x00
+lshf r1 0x0c
+lshf r3 0x00
+lshf r3 0x28
+sub r2 r1
+JZ r3
+
+//john = 0
+lshf DR 0x00
+lshf DR 0x00
+lshf r6 0x21
+lshf r6 0x76
+put DR r6
+
+//sam = 0
+lshf DR 0x00
+lshf DR 0x00
+lshf r6 0x21
+lshf r6 0x77
+put DR r6
+
+//both = 0
+lshf DR 0x00
+lshf DR 0x00
+lshf r6 0x21
+lshf r6 0x78
+put DR r6
+
+//both = 1
+lshf DR 0x00
+lshf DR 0x01
+lshf r6 0x21
+lshf r6 0x78
+put DR r6
+```
